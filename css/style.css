@@ -1,3 +1,6 @@
+html{
+  scroll-behavior: smooth;
+}
 .navbarsec {
   background-color: #fff;
 
@@ -15,8 +18,9 @@
   opacity: 1;
   background: #001234; /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #f6f6f9, #e24f15); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #02506c, #151515); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: #fff;
+  /* background: linear-gradient(to bottom, #56c596, #329d9c); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #f7f7f7 ;
+  color: #205072;
 }
 .slider-card {
   background: #fff;
@@ -85,7 +89,7 @@ body.offcanvas-menu:before {
 }
 
 p {
-  color: #b3b3b3;
+  color: #08545c;
   font-weight: 300;
 }
 

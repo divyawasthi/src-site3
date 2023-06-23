@@ -9,6 +9,9 @@
   scale: 1.1;
   transition: 0.3s ease;
 }
+.brandname1{
+  height:90px;
+}
 
 .sticky {
   position: fixed;
@@ -58,27 +61,29 @@
   justify-content: space-around;
 }
 
+
 .svnitlogo {
-  height: 180px;
+  width : 140px;
+  height: 140px;
 }
 .cheslogo {
-  height: 180px;
+  height: 160px;
 }
 .and {
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 400;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .text {
   text-align: center;
   color: white;
-  margin: 30px 0;
+  margin: 20px 0;
   padding: 10px 0;
 }
 .text h1 {
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 500;
   font-family: "Ubuntu", sans-serif;
 }
@@ -89,26 +94,31 @@
 .aiche {
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  /* margin: 30px 0; */
   height: 100px;
-  padding-top: 15px;
+  margin-top:1rem;
+  /* padding-top: 5px; */
 }
 
 @media (max-width: 560px) {
   .svnitlogo {
-    height: 130px;
+    width:100px;
+    height: 100px;
   }
   .cheslogo {
-    height: 130px;
+    height: 110px;
   }
   .and {
     font-size: 30px;
   }
   .text h1 {
-    font-size: 25px;
+    font-size: 22px;
   }
   .text h3 {
     font-size: 18px;
+  }
+  .brandname1{
+    height:65px;
   }
 }
 
@@ -150,7 +160,7 @@
   color: #ffffff;
 }
 #footer {
-  background: #100804;
+  background: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,9 +173,9 @@
 }
 .footertext {
   margin: 10px 0;
-  text-align: center;
+  text-align: left;
   color: white;
-  width: 80%;
+  width: 100%;
 }
 .footertext h1 {
   font-size: 25px;
@@ -291,7 +301,7 @@ h4 {
 }
 @media (max-width: 768px) {
   .testimonial-items {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   }
 }
 
