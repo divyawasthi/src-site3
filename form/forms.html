@@ -54,7 +54,7 @@
               <input type="text" id="admin_no" placeholder="Admission no...." name="admin_no" required/>
           </div>
             <div class="inputBox">
-              College Id
+             <b>College Id</b>
               <input type="file"
               class="inputfile"
               id="fileinp"
@@ -65,8 +65,21 @@
               required
               />
             </div>
+            
+            <div class="inputBox">
+              <b>Personal ID(PAN,aadhar)</b>
+              <input type="file"
+              class="inputfile"
+              id="fileinp"
+              onchange="getfile(event)"
+              placeholder="personal ID"
+              accept="image/png image/jpeg" 
+              required/>
+            </div>
+
+
             <div class="inputBox">            
-              <label for="tshirt" class="inputBox">Shirt Size</label>
+              <label for="tshirt" class="inputBox"><b>Shirt Size</b></label>
               <select id="tshirtsize" name="tshirt" size="1" name="tshirt">
               <option value="s">Small(38)</option>
               <option value="m">Medium(40)</option>
@@ -83,6 +96,17 @@
           <div class="inputBox">
             <input type="text" id="aiche_id" name="aiche_id" placeholder="AIChe ID..." required/>
         </div>
+        
+        <div class="inputBox">
+         <b> AIChE Profile ScreenShot</b>
+          <input type="file"
+          class="inputfile"
+          id="fileinp"
+          onchange="getfile(event)"
+          placeholder="AIChE Profile"
+          accept="image/png image/jpeg" 
+          required/>
+        </div>
           <div>
             <p style="text-align: center;font-size:1.2rem"><b>Scan QR for Payment</b></p>
             <img src="../assets/heads/qrcode.jpeg" 
@@ -91,7 +115,7 @@
             <p style="text-align:center;font-size:1.1rem">SRC Registration Fees (2299+GST):<b> Rs 2712 </b></p>
           </div>
             <div class="inputBox">
-              ScreenShot of Payment
+              <b>ScreenShot of Payment</b>
               <input type="file"
               class="inputfile"
               id="fileinp"
@@ -173,9 +197,10 @@ function submitForm(e) {
     // var fileName = fileItem.name ; 
   // var uploaded_img = getElementVal('fileinp')
 // console.log(name,emailid,msgContent)
-const storageRef = storage.ref().child('images').child(name+phone)
+
   // let fname = fileName ;
   const src_id = name.split(' ').join('')+Math.floor(Math.random()*10000 + 1)
+  const storageRef = storage.ref().child('images').child(src_id+phone)
 // const storageRef2 = storage.ref().child('payment').child(name+phone)
   for (var i = 0 ; i< imagesfile.length ; ++i){
     const folderRef = storageRef.child(name+phone+college+imagesfile[i].name)

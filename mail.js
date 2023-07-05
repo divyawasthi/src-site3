@@ -42,6 +42,7 @@ const sendMail = (name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_na
     Admission number:${admin_no}
     Tshirt-size:${tshirt}
     AIChe-chaptername:${chapter_name}
+    AIChe-Id : ${aiche_id}
     As the event draws nearer, we will be sharing additional details, including the agenda, speaker profiles, and any important updates. We encourage 
     you to keep an eye on your inbox for future communication from our team. Should you have any questions or require assistance leading up to the event, 
     please do not hesitate to reach out to us.
