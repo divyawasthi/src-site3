@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Messages | Firebase</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" href="./mail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<body>
+  
+    <div class="container">
+        <form action="" id="contactForm">
+          <img src="../assets/logo_site1.png" style="height:100px;width:100px"/>  
+          <h1 style="text-align: center;">SRC 
+              
+              
+              Registration</h1> 
+            <div class="alert">Your message sent</div>
+
+            <div class="inputBox">
+                <input type="text" id="name" placeholder="Name...." name="name" required/>
+            </div>
+            <div class="inputBox">
+              <input type="email" id="emailid" placeholder="Email....." name="emailid" required/>
+          </div>
+          
+          <div class="inputBox">
+            <input type="tel" id="phone" placeholder="Phone..." name="phone" required/>
+        </div>
+        
+        <div class="inputBox">
+          <input type="tel" id="Whatsapp" placeholder="Whatsapp no..." name="whatsapp" required/>
+      </div>
+      <div class="inputBox">
+        <label for="birthday">DOB</label>
+          <input type="date" id="birthday" name="birthday" placeholder="DOB..." required>
+      </div>
+      
+      <div class="inputBox">
+        <input type="text" id="college" placeholder="College...." name="college" required/>
+    </div>
+            
+            <div class="inputBox">
+              <input type="text" id="admin_no" placeholder="Admission no...." name="admin_no" required/>
+          </div>
+            <div class="inputBox">
+              College Id
+              <input type="file"
+              class="inputfile"
+              id="fileinp"
+              onchange="getfile(event)"
+              placeholder="college id"
+              accept="image/png image/jpeg" 
+              
+              required
+              />
+            </div>
+            <div class="inputBox">            
+              <label for="tshirt" class="inputBox">Shirt Size</label>
+              <select id="tshirtsize" name="tshirt" size="1" name="tshirt">
+              <option value="s">Small(38)</option>
+              <option value="m">Medium(40)</option>
+              <option value="l">Large(42)</option>
+              <option value="xl">XL(44)</option>
+              <option value="xxl">XXL(46)</option>
+            </select>
+            </div>
+            
+            <div class="inputBox">
+              <input type="text" id="aiche" name="chapter_name" placeholder="AIChe Chapter Name of Institute..." required/>
+          </div>
+          
+          <div class="inputBox">
+            <input type="text" id="aiche_id" name="aiche_id" placeholder="AIChe ID..." required/>
+        </div>
+          <div>
+            <p style="text-align: center;font-size:1.2rem"><b>Scan QR for Payment</b></p>
+            <img src="../assets/heads/qrcode.jpeg" 
+            class="qrcode_img"
+            />
+            <p style="text-align:center;font-size:1.1rem">SRC Registration Fees (2299+GST):<b> Rs 2712 </b></p>
+          </div>
+            <div class="inputBox">
+              ScreenShot of Payment
+              <input type="file"
+              class="inputfile"
+              id="fileinp"
+              onchange="getfile(event)"
+              placeholder="payment"
+              accept="image/png image/jpeg" 
+              required/>
+            </div>
+
+            <div class="inputBox" style="text-align:center">
+                <button type="submit" id="submit_link">Submit</button>
+            </div>
+          </form>
+    </div>
+    <!-- </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+  //   copy your firebase config informations
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
+    apiKey: "AIzaSyAXIK2TBcwuAh4_qwP_Fg_tE_-NfNQ5ctU",
+    authDomain: "formsubmission-a4ae3.firebaseapp.com",
+    databaseURL: "https://formsubmission-a4ae3-default-rtdb.firebaseio.com",
+    projectId: "formsubmission-a4ae3",
+    storageBucket: "formsubmission-a4ae3.appspot.com",
+    messagingSenderId: "287960953448",
+    appId: "1:287960953448:web:7228ed37cddabf6c0641dd"
+  };
+  
+
+
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+var fileItem,fileName,fileName2;
+let file ,file2
+let cnt2 = 0;
+let imagesfile = []
+let url_links = []
+const storage = firebase.storage()
+// reference your database
+function getfile(e){
+  for (var i = 0; i < e.target.files.length; i++) {
+        var imageFile = e.target.files[i]
+        imagesfile.push(imageFile)
+        // uploadImageAsPromise(imageFile);
+    }
+    // console.log(fileName)
+}
+
+
+var contactFormDB = firebase.database().ref("contactForm");
+
+document.getElementById("contactForm").addEventListener("submit", submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+
+
+  var name = getElementVal("name");
+  var emailid = getElementVal("emailid");
+  // var msgContent = getElementVal("msgContent");
+  var phone = getElementVal("phone")
+  var whatsapp = getElementVal("Whatsapp")
+  var college = getElementVal("college")
+  var admin_no = getElementVal("admin_no")
+  var tshirt = getElementVal('tshirtsize')
+  var chapter_name = getElementVal('aiche')
+  var dob = getElementVal('birthday')
+  var aiche_id = getElementVal('aiche_id')
+  // let finalmessage = `Name : ${name} <br>  Email : ${emailid} <br>  Message : ${msgContent} <br>`;
+  // var fileItem = e.target.files[0];
+    // var fileName = fileItem.name ; 
+  // var uploaded_img = getElementVal('fileinp')
+// console.log(name,emailid,msgContent)
+const storageRef = storage.ref().child('images').child(name+phone)
+  // let fname = fileName ;
+  const src_id = name.split(' ').join('')+Math.floor(Math.random()*10000 + 1)
+// const storageRef2 = storage.ref().child('payment').child(name+phone)
+  for (var i = 0 ; i< imagesfile.length ; ++i){
+    const folderRef = storageRef.child(name+phone+college+imagesfile[i].name)
+    const uploadtask = folderRef.put(imagesfile[i])
+    uploadtask.on('state_changed', function(snapshot){
+            var progress =
+             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              // var uploader = document.getElementById('uploader');
+              // uploader.value=progress;
+              
+          }, function(error) {console.log(error);
+          }, function() {
+ 
+               // get the uploaded image url back
+               uploadtask.snapshot.ref.getDownloadURL().then(
+                function(downloadURL) {
+ 
+               // You get your url from here
+                // console.log('File available at', downloadURL);
+                  url_links.push(downloadURL)
+              // print the image url
+              //  console.log(downloadURL);
+              // document.getElementById('submit_link').removeAttribute('disabled');
+            });
+          });
+
+    
+  }
+  const data_sent = {
+    name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_name,src_id,aiche_id
+  }
+  $.post('/email', data_sent, function() {
+                console.log('Server recieved our data');
+            });
+  
+  // const folderRef = storageRef.child(name+college+fileName);
+  // const folderRef2 = storageRef2.child(name+college+fileName2)
+  // const uploadtask = folderRef.put(file)
+  // const uploadtask2 = folderRef2.put(file2)
+  // const file_url = storage
+  //             .ref("myimages")f
+  //             .child(uploadedFileName)
+  //             .getDownloadURL()
+  //   enable alert
+  // console.log(file_url)  
+  // console.log(imagesfile)
+saveMessages(name, 
+          emailid, 
+          
+          phone,
+          whatsapp,
+          dob,
+          college,
+          admin_no,
+          tshirt,
+          chapter_name,
+          src_id,aiche_id
+
+);
+// Email.send({
+//     Host : "smtp.gmail.com",
+//     Username : "divy.awasthi@gmail.com",
+//     Password : "bidpqwrrmgvmxqgt",
+//     To : emailid,
+//     From : "divy.awasthi@gmail.com",
+//     Subject : "SRC Registration",
+//     Body : "Thank you for registering for src"
+// }).then(
+//   message => alert(message)
+// );
+
+// $.ajax({
+// 				url:"https://api.apispreadsheets.com/data/0pgV2tb1N3nFjcMm/",
+// 				type:"post",
+// 				data:$("#contactForm").serializeArray(),
+// 				success: function(){
+// 					alert("Form Data Submitted :)")
+// 				},
+// 				error: function(){
+// 					alert("There was an error :(")
+// 				}
+// 			});
+
+  document.querySelector(".alert").style.display = "block";
+
+  //   remove the alert
+  setTimeout(() => {
+    document.querySelector(".alert").style.display = "none";
+  }, 3000);
+
+  //   reset the form
+  document.getElementById("contactForm").reset();
+}
+
+const saveMessages = (name, 
+                      emailid, 
+                      
+                      phone,
+                      whatsapp,
+                      dob,
+                      college,
+                      admin_no,
+                      tshirt,
+                      chapter_name,src_id,aiche_id
+                    ) => {
+  var newContactForm = contactFormDB.push();
+
+  newContactForm.set({
+    name: name,
+    emailid: emailid,
+    
+    phone:phone,
+    whatsapp:whatsapp,
+    dob:dob,
+    college:college,
+    admission_no : admin_no ,
+    shirtsize:tshirt, 
+    aiche_chapter:chapter_name,
+    src_id:src_id,
+    aiche_id:aiche_id
+    // image:fileimage
+  });
+
+};
+
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};
+
+    </script>
+</body>
+
+</html>
