@@ -203,7 +203,7 @@ function submitForm(e) {
   const storageRef = storage.ref().child('images').child(src_id+phone)
 // const storageRef2 = storage.ref().child('payment').child(name+phone)
   for (var i = 0 ; i< imagesfile.length ; ++i){
-    const folderRef = storageRef.child(name+phone+college+imagesfile[i].name)
+    const folderRef = storageRef.child(src_id+Math.floor(Math.random()*10000 + 1)+imagesfile[i].name)
     const uploadtask = folderRef.put(imagesfile[i])
     uploadtask.on('state_changed', function(snapshot){
             var progress =
