@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Messages | Firebase</title>
+    <title>SRC Registration</title>
+    
+	<link rel="shortcut icon" href="../assets/logo_site1.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link rel="stylesheet" href="./mail.css">
@@ -35,14 +37,22 @@
           </div>
           
           <div class="inputBox">
-            <input type="tel" id="phone" placeholder="Phone..." name="phone" required/>
+            <input type="tel" id="phone" placeholder="Mobile..." name="phone" required/>
         </div>
         
         <div class="inputBox">
           <input type="tel" id="Whatsapp" placeholder="Whatsapp no..." name="whatsapp" required/>
       </div>
+      
       <div class="inputBox">
-        <label for="birthday">DOB</label>
+        <input type="text" id="guardianname" placeholder="Guardian Name...." name="guardianname" required/>
+    </div>
+      <div class="inputBox">
+        <input type="tel" id="guardianphone" placeholder="Guardian Mobile..." name="guardianphone" required/>
+    </div>
+    
+      <div class="inputBox">
+        <label for="birthday"><b style="font-size:1.1rem">DOB : </b></label>
           <input type="date" id="birthday" name="birthday" placeholder="DOB..." required>
       </div>
       
@@ -53,8 +63,8 @@
             <div class="inputBox">
               <input type="text" id="admin_no" placeholder="Admission no...." name="admin_no" required/>
           </div>
-            <div class="inputBox">
-             <b>College Id</b>
+            <div class="inputBox" style="text-align:left">
+             <b style="font-size:1.1rem">College Id</b>
               <input type="file"
               class="inputfile"
               id="fileinp"
@@ -67,7 +77,7 @@
             </div>
             
             <div class="inputBox">
-              <b>Personal ID(PAN,aadhar)</b>
+              <b style="font-size:1.1rem">Personal ID(PAN,aadhar)</b>
               <input type="file"
               class="inputfile"
               id="fileinp"
@@ -79,7 +89,7 @@
 
 
             <div class="inputBox">            
-              <label for="tshirt" class="inputBox"><b>Shirt Size</b></label>
+              <label for="tshirt" class="inputBox"><b style="font-size:1.1rem">Shirt Size</b></label>
               <select id="tshirtsize" name="tshirt" size="1" name="tshirt">
               <option value="s">Small(38)</option>
               <option value="m">Medium(40)</option>
@@ -98,7 +108,7 @@
         </div>
         
         <div class="inputBox">
-         <b> AIChE Profile ScreenShot</b>
+         <b style="font-size:1.1rem"> AIChE Profile ScreenShot</b>
           <input type="file"
           class="inputfile"
           id="fileinp"
@@ -107,15 +117,17 @@
           accept="image/png image/jpeg" 
           required/>
         </div>
-          <div>
+          <div >
+            
             <p style="text-align: center;font-size:1.2rem"><b>Scan QR for Payment</b></p>
             <img src="../assets/heads/qrcode.jpeg" 
             class="qrcode_img"
             />
-            <p style="text-align:center;font-size:1.1rem">SRC Registration Fees (2299+GST):<b> Rs 2712 </b></p>
+            <p class="fees-text">SRC Registration Fees (2299+GST):<b> Rs 2712 </b><br/>
+            UPI ID : studentcouncileventregistration@sbi</p>
           </div>
             <div class="inputBox">
-              <b>ScreenShot of Payment</b>
+              <b style="font-size:1.1rem">ScreenShot of Payment</b>
               <input type="file"
               class="inputfile"
               id="fileinp"
@@ -124,6 +136,10 @@
               accept="image/png image/jpeg" 
               required/>
             </div>
+            
+            <div class="inputBox">
+              <input type="text" id="transaction" placeholder="Transaction ID...." name="transaction" required/>
+          </div>
 
             <div class="inputBox" style="text-align:center">
                 <button type="submit" id="submit_link">Submit</button>
@@ -186,12 +202,15 @@ function submitForm(e) {
   // var msgContent = getElementVal("msgContent");
   var phone = getElementVal("phone")
   var whatsapp = getElementVal("Whatsapp")
+  var guardianname = getElementVal('guardianname')
+  var guardianphone = getElementVal('guardianphone')
   var college = getElementVal("college")
   var admin_no = getElementVal("admin_no")
   var tshirt = getElementVal('tshirtsize')
   var chapter_name = getElementVal('aiche')
   var dob = getElementVal('birthday')
   var aiche_id = getElementVal('aiche_id')
+  var transaction_id =getElementVal('transaction')
   // let finalmessage = `Name : ${name} <br>  Email : ${emailid} <br>  Message : ${msgContent} <br>`;
   // var fileItem = e.target.files[0];
     // var fileName = fileItem.name ; 
@@ -203,7 +222,7 @@ function submitForm(e) {
   const storageRef = storage.ref().child('images').child(src_id+phone)
 // const storageRef2 = storage.ref().child('payment').child(name+phone)
   for (var i = 0 ; i< imagesfile.length ; ++i){
-    const folderRef = storageRef.child(src_id+Math.floor(Math.random()*10000 + 1)+imagesfile[i].name)
+    const folderRef = storageRef.child(src_id+ '_' + Math.floor(Math.random()*1000 + 1)+imagesfile[i].name)
     const uploadtask = folderRef.put(imagesfile[i])
     uploadtask.on('state_changed', function(snapshot){
             var progress =
@@ -230,10 +249,10 @@ function submitForm(e) {
     
   }
   const data_sent = {
-    name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_name,src_id,aiche_id
+    name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_name,src_id,aiche_id,transaction_id
   }
   $.post('/email', data_sent, function() {
-                console.log('Server recieved our data');
+                console.log('');
             });
   
   // const folderRef = storageRef.child(name+college+fileName);
@@ -257,7 +276,7 @@ saveMessages(name,
           admin_no,
           tshirt,
           chapter_name,
-          src_id,aiche_id
+          src_id,aiche_id,guardianname,guardianphone,transaction_id
 
 );
 // Email.send({
@@ -304,23 +323,25 @@ const saveMessages = (name,
                       college,
                       admin_no,
                       tshirt,
-                      chapter_name,src_id,aiche_id
+                      chapter_name,src_id,aiche_id,guardianname,guardianphone,transaction_id
                     ) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
     name: name,
     emailid: emailid,
-    
     phone:phone,
     whatsapp:whatsapp,
+    guardianname:guardianname,
+    guardianphone:guardianphone,
     dob:dob,
     college:college,
     admission_no : admin_no ,
     shirtsize:tshirt, 
     aiche_chapter:chapter_name,
     src_id:src_id,
-    aiche_id:aiche_id
+    aiche_id:aiche_id,
+    transaction_id:transaction_id
     // image:fileimage
   });
 

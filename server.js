@@ -26,9 +26,9 @@ app.use(express.json())
 
 app.post('/email',(req,res)=>{
   // console.log('data:',req.body)
-  const {name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_name,src_id,aiche_id} = req.body
+  const {name,emailid,phone,whatsapp,college,admin_no,tshirt,chapter_name,src_id,aiche_id,transaction_id} = req.body
   sendMail(name,emailid,phone,whatsapp,
-      college,admin_no,tshirt,chapter_name,src_id,aiche_id,(err,data)=>{
+      college,admin_no,tshirt,chapter_name,src_id,aiche_id,transaction_id,(err,data)=>{
         if (err){
           res.status(500).join({message:'internal Error'})
         }
