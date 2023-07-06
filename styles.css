@@ -267,7 +267,7 @@ h4 {
   color: #dadada;
   font-size: 1.5em;
   cursor: pointer;
-  transition: color 0.3s linear;
+  transition: color 20.3s linear;
 }
 @media (min-width: 768px) {
   .testimonial-carousel .icon-container span.lnr {
