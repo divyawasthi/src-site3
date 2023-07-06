@@ -10,11 +10,11 @@ html{
 
 .slider {
   margin-bottom: 5rem;
-
   position: relative;
 }
+
 .slider .owl-item.active.center .slider-card {
-  transform: scale(1.15);
+  transform: scale(1.05);
   opacity: 1;
   background: #001234; /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #f6f6f9, #e24f15); /* Chrome 10-25, Safari 5.1-6 */
