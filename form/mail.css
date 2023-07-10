@@ -18,6 +18,12 @@ body{
     /* text-align : center; */
 
 }
+.form-title{
+    position: relative;
+    text-align: center;
+    /* color: white; */
+    /* backgrund :url(../assets/chejeo.jpg); */
+}
 .fees-text{
     text-align:center;
     padding-top:0.3rem;

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" href="./mail.css">
+    <link rel="shortcut icon" href="../assets/logo_site1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<body>
+  <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: ; */
+}
+
+body{
+    width: 85%;
+    height: 158vh;
+    background-color:rgb(2, 54, 42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 0 auto;
+    /* background-color: red; */
+    /* text-align : center; */
+
+}
+.form-title > h1{
+  font-size:3.8rem;
+  /* padding:0; */
+}
+.fees-text{
+    text-align:center;
+    padding-top:0.3rem;
+    padding-bottom:0.5rem;
+}
+
+.qrcode_img{
+    width:240px;
+    height:240px;
+    text-align: center;
+    justify-self:center;
+    position: relative;
+    margin : 0 auto;
+    margin-left : 1.3rem;
+}
+
+.container {
+    /* background-color:red; */
+    width: 89%;
+    padding:0;
+    /* background-color :red; */
+    height: 140vh;
+    /* padding: 20px; */
+    border-radius: 50px;
+    box-shadow:  0px 5px 25px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 6px;
+    /* padding: 20px 60px 30px 40px; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container form{
+    width: 100%;
+    padding:20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputBox{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.inputBox input[type="text"], .inputBox input[type="email"],.inputBox input[type='tel']
+, .inputBox > select  
+{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+.inputBox textarea{
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+.inputBox button{
+    color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  /* margin-left : 270px; */
+
+  border-radius: 6px;
+  background: #056902;
+  /* justify-content: center; */
+  /* text-align: center;
+   */
+/* align-items:center */
+margin : 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    
+}
+
+.inputBox button:hover{
+    background: rgb(0, 21, 10);
+    transition: all 0.3s ease;
+}
+
+::placeholder{
+    font-size: 16px;
+}
+
+.alert{
+    width: 100%;
+    background: rgb(0, 255, 106);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+}
+@media (min-width : 1000px) {
+    .container{
+        width:50%;
+    }
+    body{
+        width : 100%;
+    }
+}
+@media (max-width:700px){
+    .fees-text{
+        font-size:0.8rem;
+    }
+}
+@media (max-width:600px){
+  .form-title > h1{
+    font-size:1.8rem;
+  }
+}
+  
+
+  </style>
+    <div class="container">
+        <div class="form-title">
+            <img src="../assets/wORKSHOP.png" 
+            style="filter:brightness(40%);"
+            alt="" width="100%"/>
+          <h1 style="text-align: center; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    
+    transform: translate(-50%, -50%);
+    color:white;
+          
+          
+          "
+          class="form-title col-md-10"
+          >Workshop<br>Registration
+          </h1>
+          </div>
+              
+        <form action="" id="contactForm">
+           
+            <div class="alert">Your message sent</div>
+            <div class="inputBox">
+                <input type="text" id="college" placeholder="College...." name="college" required />
+            
+            </div>
+            
+              
+        
+              <div class="inputBox">
+                <input type="text" id="name" placeholder="Name" name="name" required/>
+            </div>
+            
+          <div class="inputBox">
+            <input type="text" id="srcid1" placeholder="SRC ID...." name="srcid1" required/>
+        </div>
+          
+          <div class="inputBox">
+            <input type="tel" id="phone1" placeholder="Phone..." name="phone1" required/>
+        </div>
+        <div class="inputBox">
+            <input type="text" id="emailid1" placeholder="Email....." name="emailid1" required/>
+        </div>
+        
+            <div class="inputBox" style="text-align:center">
+                <button type="submit" id="submit_link">Submit</button>
+            </div>
+          </form>
+    </div>
+    <!-- </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+  //   copy your firebase config informations
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
+    apiKey: "AIzaSyAXIK2TBcwuAh4_qwP_Fg_tE_-NfNQ5ctU",
+    authDomain: "formsubmission-a4ae3.firebaseapp.com",
+    databaseURL: "https://formsubmission-a4ae3-default-rtdb.firebaseio.com",
+    projectId: "formsubmission-a4ae3",
+    storageBucket: "formsubmission-a4ae3.appspot.com",
+    messagingSenderId: "287960953448",
+    appId: "1:287960953448:web:7228ed37cddabf6c0641dd"
+  };
+  
+
+
+
+// initialize firebase
+firebase.initializeApp(firebaseConfig);
+var fileItem,fileName,fileName2;
+let file ,file2
+let cnt2 = 0;
+let imagesfile = []
+let url_links = []
+const storage = firebase.storage()
+
+
+// var event = getElementVal('STPC/Poster')
+var contactFormDB = firebase.database().ref('Workshop');
+
+document.getElementById("contactForm").addEventListener("submit", submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+
+//   var teamname = getElementVal('teamname')
+  var name = getElementVal("name");
+  var college = getElementVal('college')
+  var emailid = getElementVal("emailid1"); 
+  var phone = getElementVal('phone1')
+  var srcid = getElementVal('srcid1')
+//   var event = getElementVal('event')
+//   var title = getElementVal('title')
+  // var msgContent = getElementVal("msgContent");
+  
+  // let finalmessage = `Name : ${name} <br>  Email : ${emailid} <br>  Message : ${msgContent} <br>`;
+  // var fileItem = e.target.files[0];
+    // var fileName = fileItem.name ; 
+  // var uploaded_img = getElementVal('fileinp')
+// console.log(name,emailid,msgContent)
+// const storageRef = storage.ref().child('images').child(name+phone)
+  // let fname = fileName ;
+//   const src_id = name.split(' ').join('')+Math.floor(Math.random()*10000 + 1)
+// const storageRef2 = storage.ref().child('payment').child(name+phone)
+  
+// const storageRef = storage.ref().child(event).child(college+'_'+name)
+// for (var i = 0 ; i< imagesfile.length ; ++i){
+//     const folderRef = storageRef.child(name+college+ imagesfile[i].name)
+//     const uploadtask = folderRef.put(imagesfile[i])
+    
+//   }
+var event = 'Workshop'
+  const data_sent = {
+    college,name,srcid,phone,emailid,event
+  }
+  $.post('/workshop', data_sent, function() {
+                console.log('Server recieved our data');
+            });
+  
+  // const folderRef = storageRef.child(name+college+fileName);
+  // const folderRef2 = storageRef2.child(name+college+fileName2)
+  // const uploadtask = folderRef.put(file)
+  // const uploadtask2 = folderRef2.put(file2)
+  // const file_url = storage
+  //             .ref("myimages")f
+  //             .child(uploadedFileName)
+  //             .getDownloadURL()
+  //   enable alert
+  // console.log(file_url)  
+  // console.log(imagesfile)
+saveMessages(
+    college,name,srcid,phone,emailid1,event
+
+);
+// Email.send({
+//     Host : "smtp.gmail.com",
+//     Username : "divy.awasthi@gmail.com",
+//     Password : "bidpqwrrmgvmxqgt",
+//     To : emailid,
+//     From : "divy.awasthi@gmail.com",
+//     Subject : "SRC Registration",
+//     Body : "Thank you for registering for src"
+// }).then(
+//   message => alert(message)
+// );
+
+// $.ajax({
+// 				url:"https://api.apispreadsheets.com/data/0pgV2tb1N3nFjcMm/",
+// 				type:"post",
+// 				data:$("#contactForm").serializeArray(),
+// 				success: function(){
+// 					alert("Form Data Submitted :)")
+// 				},
+// 				error: function(){
+// 					alert("There was an error :(")
+// 				}
+// 			});
+
+  document.querySelector(".alert").style.display = "block";
+
+  //   remove the alert
+  setTimeout(() => {
+    document.querySelector(".alert").style.display = "none";
+  }, 3000);
+
+  //   reset the form
+  document.getElementById("contactForm").reset();
+}
+
+const saveMessages = (
+    college,name,srcid1,phone1,emailid1,event
+                    ) => {
+  var newContactForm = contactFormDB.push();
+
+  newContactForm.set({
+    college:college,name:name,srcid:srcid1,phone:phone1,emailid:emailid1,event:event
+    // image:fileimage
+  });
+
+};
+
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};
+
+    </script>
+</body>
+
+</html>
