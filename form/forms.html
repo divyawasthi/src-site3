@@ -18,6 +18,164 @@
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		crossorigin="anonymous"></script>
 <script src="https://apis.google.com/js/api.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: ; */
+}
+
+body{
+    width: 85%;
+    height: 60vh;
+    background-color:rgb(2, 54, 42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 0 auto;
+    /* background-color: red; */
+    /* text-align : center; */
+
+}
+.form-title{
+    position: relative;
+    text-align: center;
+    /* color: white; */
+    /* backgrund :url(../assets/chejeo.jpg); */
+}
+.fees-text{
+    text-align:center;
+    padding-top:0.3rem;
+    padding-bottom:0.5rem;
+}
+
+.qrcode_img{
+    width:240px;
+    height:240px;
+    text-align: center;
+    justify-self:center;
+    position: relative;
+    margin : 0 auto;
+    margin-left : 1.3rem;
+}
+
+.container{
+    /* background-color:red; */
+    width: 87%;
+    /* background-color :red; */
+    height: 40vh;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:  0px 5px 25px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px 60px 30px 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputBox{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.inputBox input[type="text"], .inputBox input[type="email"],.inputBox input[type='tel']
+, .inputBox > select  
+{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+.inputBox textarea{
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+.inputBox button{
+    color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  /* margin-left : 270px; */
+
+  border-radius: 6px;
+  background: #056902;
+  /* justify-content: center; */
+  /* text-align: center;
+   */
+/* align-items:center */
+margin : 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    
+}
+
+.inputBox button:hover{
+    background: rgb(0, 21, 10);
+    transition: all 0.3s ease;
+}
+
+::placeholder{
+    font-size: 16px;
+}
+
+.alert{
+    width: 100%;
+    background: rgb(0, 255, 106);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+}
+@media (min-width : 1000px) {
+    .container{
+        width:50%;
+    }
+    body{
+        width : 100%;
+    }
+}
+@media (max-width:700px){
+    .fees-text{
+        font-size:0.8rem;
+    }
+}
+</style>
 <body>
   
     <div class="container">
@@ -27,9 +185,10 @@
               
               
               Registration</h1> 
+              <p>Early bid offer is over . Reigstrations with updated cost will be starting soon </p>
             <div class="alert">Your message sent</div>
 
-            <div class="inputBox">
+            <!-- <div class="inputBox">
                 <input type="text" id="name" placeholder="Name...." name="name" required/>
             </div>
             <div class="inputBox">
@@ -147,7 +306,7 @@
 
             <div class="inputBox" style="text-align:center">
                 <button type="submit" id="submit_link">Submit</button>
-            </div>
+            </div> -->
           </form>
     </div>
     <!-- </div> -->
