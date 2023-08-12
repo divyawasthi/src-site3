@@ -29,7 +29,7 @@
 
 body{
     width: 75%;
-    height: 300vh;
+    height: 80vh;
     background-color:rgb(2, 54, 42);
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@ body{
     width: 79%;
     padding:0;
     /* background-color :red; */
-    height: 280vh;
+    height: 20vh;
     /* padding: 20px; */
     border-radius: 50px;
     box-shadow:  0px 5px 25px rgba(0,0,0,0.2);
@@ -194,265 +194,21 @@ left: 50%;
 
 transform: translate(-50%, -50%);
 color:white;
+
       
       
       "
       class="form-title col-md-10"
-      >Chemicraft<br>Registration
+      >Chemicraft<br>Registration has been closed
       </h1>
       </div>  
       <form action="" id="contactForm">
-          
-          
-            <div class="alert">Your message sent</div>
-            <div class="inputBox">
-                <input type="text" id="college" placeholder="College...." name="college" required />
-
-            </div>
-
-            <div class="inputBox">
-                <input type="text" id="teamname" placeholder="Team Name...." name="teamname" required/>
-            </div>
-            
-            <div class="inputBox">
-                <input type="text" id="LeaderName" placeholder="Team Leader Name..." name="LeaderName" required/>
-            </div>
-          <div class="inputBox">
-            <input type="text" id="srcid1" placeholder="SRC ID...." name="srcid1" required/>
-        </div>
-          
-          <div class="inputBox">
-            <input type="tel" id="phone1" placeholder="Phone..." name="phone1" required/>
-        </div>
-        <div class="inputBox">
-            <input type="text" id="emailid1" placeholder="Email....." name="emailid1" required/>
-        </div>
-        <h3>Team Member 2</h3>
-        <div class="inputBox">
-            <input type="text" id="name2" placeholder="Name..." name="name2" required/>
-        </div>
-      <div class="inputBox">
-        <input type="text" id="srcid2" placeholder="SRC ID...." name="srcid2" required/>
-    </div>
-      
-      <div class="inputBox">
-        <input type="tel" id="phone2" placeholder="Phone..." name="phone2" required/>
-    </div>
-    <div class="inputBox">
-        <input type="text" id="emailid2" placeholder="Email....." name="emailid2" required/>
-    </div>
-    <h3>Team Member 3</h3>
-        <div class="inputBox">
-            <input type="text" id="name3" placeholder="Name..." name="name3" required/>
-        </div>
-      <div class="inputBox">
-        <input type="text" id="srcid3" placeholder="SRC ID...." name="srcid3" required/>
-    </div>
-      
-      <div class="inputBox">
-        <input type="tel" id="phone3" placeholder="Phone..." name="phone3" required/>
-    </div>
-    <div class="inputBox">
-        <input type="text" id="emailid3" placeholder="Email....." name="emailid3" required/>
-    </div>
-    <h3>Team Member 4</h3>
-        <div class="inputBox">
-            <input type="text" id="name4" placeholder="Name..." name="name4" required/>
-        </div>
-      <div class="inputBox">
-        <input type="text" id="srcid4" placeholder="SRC ID...." name="srcid4" required/>
-    </div>
-      
-      <div class="inputBox">
-        <input type="tel" id="phone4" placeholder="Phone..." name="phone4" required/>
-    </div>
-    <div class="inputBox">
-        <input type="text" id="emailid4" placeholder="Email....." name="emailid4" required/>
-    </div>
-
-            <div class="inputBox" style="text-align:center">
-                <button type="submit" id="submit_link">Submit</button>
-            </div>
+    
           </form>
     </div>
     <!-- </div> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    
-    <script>
-        const firebaseConfig = {
-  //   copy your firebase config informations
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   
-    apiKey: "AIzaSyAXIK2TBcwuAh4_qwP_Fg_tE_-NfNQ5ctU",
-    authDomain: "formsubmission-a4ae3.firebaseapp.com",
-    databaseURL: "https://formsubmission-a4ae3-default-rtdb.firebaseio.com",
-    projectId: "formsubmission-a4ae3",
-    storageBucket: "formsubmission-a4ae3.appspot.com",
-    messagingSenderId: "287960953448",
-    appId: "1:287960953448:web:7228ed37cddabf6c0641dd"
-  };
-  
-
-
-
-// initialize firebase
-firebase.initializeApp(firebaseConfig);
-var fileItem,fileName,fileName2;
-let file ,file2
-let cnt2 = 0;
-let imagesfile = []
-let url_links = []
-
-
-const event1 = 'Managerial_Event'
-var contactFormDB = firebase.database().ref(event1);
-
-document.getElementById("contactForm").addEventListener("submit", submitForm);
-
-function submitForm(e) {
-  e.preventDefault();
-
-  var teamname = getElementVal('teamname')
-  var Leadername = getElementVal("LeaderName");
-  var college = getElementVal('college')
-  var emailid1 = getElementVal("emailid1");
-  var phone1 = getElementVal('phone1')
-  var srcid1 = getElementVal('srcid1')
-  var name2 = getElementVal("name2");
-//   var college = getElementVal('college')
-  var emailid2 = getElementVal("emailid2");
-  var phone2 = getElementVal('phone2')
-  var srcid2 = getElementVal('srcid2')
-
-  var name3 = getElementVal("name3");
-  var emailid3 = getElementVal("emailid3");
-  var phone3 = getElementVal('phone3')
-  var srcid3 = getElementVal('srcid3')
-
-  var name4 = getElementVal("name4");
-//   var college = getElementVal('college')
-  var emailid4 = getElementVal("emailid4");
-  var phone4 = getElementVal('phone4')
-  var srcid4 = getElementVal('srcid4')
-  // var msgContent = getElementVal("msgContent");
-  
-  // let finalmessage = `Name : ${name} <br>  Email : ${emailid} <br>  Message : ${msgContent} <br>`;
-  // var fileItem = e.target.files[0];
-    // var fileName = fileItem.name ; 
-  // var uploaded_img = getElementVal('fileinp')
-// console.log(name,emailid,msgContent)
-// const storageRef = storage.ref().child('images').child(name+phone)
-  // let fname = fileName ;
-//   const src_id = name.split(' ').join('')+Math.floor(Math.random()*10000 + 1)
-// const storageRef2 = storage.ref().child('payment').child(name+phone)
-  const event ='Managerial Event'
-  const data_sent = {
-    college,
-    teamname,Leadername,phone1,emailid1,srcid1,
-    name2,phone2,emailid2,srcid2,
-    name3,phone3,emailid3,srcid3,
-    name4,phone4,emailid4,srcid4,event
-  }
-  $.post('/jeo_email', data_sent, function() {
-                console.log('Server recieved our data');
-            });
-  
-  // const folderRef = storageRef.child(name+college+fileName);
-  // const folderRef2 = storageRef2.child(name+college+fileName2)
-  // const uploadtask = folderRef.put(file)
-  // const uploadtask2 = folderRef2.put(file2)
-  // const file_url = storage
-  //             .ref("myimages")f
-  //             .child(uploadedFileName)
-  //             .getDownloadURL()
-  //   enable alert
-  // console.log(file_url)  
-  // console.log(imagesfile)
-saveMessages(
-    college,
-    teamname,Leadername,phone1,emailid1,srcid1,
-    name2,phone2,emailid2,srcid2,
-    name3,phone3,emailid3,srcid3,
-    name4,phone4,emailid4,srcid4
-
-);
-// Email.send({
-//     Host : "smtp.gmail.com",
-//     Username : "divy.awasthi@gmail.com",
-//     Password : "bidpqwrrmgvmxqgt",
-//     To : emailid,
-//     From : "divy.awasthi@gmail.com",
-//     Subject : "SRC Registration",
-//     Body : "Thank you for registering for src"
-// }).then(
-//   message => alert(message)
-// );
-
-// $.ajax({
-// 				url:"https://api.apispreadsheets.com/data/0pgV2tb1N3nFjcMm/",
-// 				type:"post",
-// 				data:$("#contactForm").serializeArray(),
-// 				success: function(){
-// 					alert("Form Data Submitted :)")
-// 				},
-// 				error: function(){
-// 					alert("There was an error :(")
-// 				}
-// 			});
-
-  document.querySelector(".alert").style.display = "block";
-
-  //   remove the alert
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 3000);
-
-  //   reset the form
-  document.getElementById("contactForm").reset();
-}
-
-const saveMessages = (
-    college,
-    teamname,Leadername,phone1,emaild1,srcid1,
-    name2,phone2,emaild2,srcid2,
-    name3,phone3,emaild3,srcid3,
-    name4,phone4,emaild4,srcid4
-                    ) => {
-  var newContactForm = contactFormDB.push();
-
-  newContactForm.set({
-    college:college,
-    teamname:teamname,
-    Leadername:Leadername,
-    member1_phone:phone1,
-    member1_emailid:emaild1,
-    member1_srcid:srcid1,
-    member2_name:name2,
-    member2_phone:phone2,
-    member2_emailid:emaild2,
-    member2_srcid:srcid2,
-    member3_name:name3,
-    member3_phone:phone3,
-    member3_emailid:emaild3,
-    member3_srcid:srcid3,
-    member4_name:name4,
-    member4_phone:phone4,
-    member4_emailid:emaild4,
-    member4_srcid:srcid4
-    // image:fileimage
-  });
-
-};
-
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
-
-    </script>
 </body>
 
 </html>

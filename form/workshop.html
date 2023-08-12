@@ -29,7 +29,7 @@
 
 body{
     width: 85%;
-    height: 158vh;
+    height: 90vh;
     background-color:rgb(2, 54, 42);
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@ body{
     width: 89%;
     padding:0;
     /* background-color :red; */
-    height: 140vh;
+    height: 40vh;
     /* padding: 20px; */
     border-radius: 50px;
     box-shadow:  0px 5px 25px rgba(0,0,0,0.2);
@@ -201,180 +201,16 @@ margin : 0 auto;
           "
           class="form-title col-md-10"
           >Workshop<br>Registration
-          </h1>
+          has been closed</h1>
           </div>
               
         <form action="" id="contactForm">
-           
-            <div class="alert">Your message sent</div>
-            <div class="inputBox">
-                <input type="text" id="college" placeholder="College...." name="college" required />
-            
-            </div>
-            
-              
-        
-              <div class="inputBox">
-                <input type="text" id="name" placeholder="Name" name="name" required/>
-            </div>
-            
-          <div class="inputBox">
-            <input type="text" id="srcid1" placeholder="SRC ID...." name="srcid1" required/>
-        </div>
-          
-          <div class="inputBox">
-            <input type="tel" id="phone1" placeholder="Phone..." name="phone1" required/>
-        </div>
-        <div class="inputBox">
-            <input type="text" id="emailid1" placeholder="Email....." name="emailid1" required/>
-        </div>
-        
-            <div class="inputBox" style="text-align:center">
-                <button type="submit" id="submit_link">Submit</button>
-            </div>
+      
           </form>
     </div>
     <!-- </div> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    
-    <script>
-        const firebaseConfig = {
-  //   copy your firebase config informations
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  
-    apiKey: "AIzaSyAXIK2TBcwuAh4_qwP_Fg_tE_-NfNQ5ctU",
-    authDomain: "formsubmission-a4ae3.firebaseapp.com",
-    databaseURL: "https://formsubmission-a4ae3-default-rtdb.firebaseio.com",
-    projectId: "formsubmission-a4ae3",
-    storageBucket: "formsubmission-a4ae3.appspot.com",
-    messagingSenderId: "287960953448",
-    appId: "1:287960953448:web:7228ed37cddabf6c0641dd"
-  };
-  
-
-
-
-// initialize firebase
-firebase.initializeApp(firebaseConfig);
-var fileItem,fileName,fileName2;
-let file ,file2
-let cnt2 = 0;
-let imagesfile = []
-let url_links = []
-const storage = firebase.storage()
-
-
-// var event = getElementVal('STPC/Poster')
-var contactFormDB = firebase.database().ref('Workshop');
-
-document.getElementById("contactForm").addEventListener("submit", submitForm);
-
-function submitForm(e) {
-  e.preventDefault();
-
-//   var teamname = getElementVal('teamname')
-  var name = getElementVal("name");
-  var college = getElementVal('college')
-  var emailid = getElementVal("emailid1"); 
-  var phone = getElementVal('phone1')
-  var srcid = getElementVal('srcid1')
-//   var event = getElementVal('event')
-//   var title = getElementVal('title')
-  // var msgContent = getElementVal("msgContent");
-  
-  // let finalmessage = `Name : ${name} <br>  Email : ${emailid} <br>  Message : ${msgContent} <br>`;
-  // var fileItem = e.target.files[0];
-    // var fileName = fileItem.name ; 
-  // var uploaded_img = getElementVal('fileinp')
-// console.log(name,emailid,msgContent)
-// const storageRef = storage.ref().child('images').child(name+phone)
-  // let fname = fileName ;
-//   const src_id = name.split(' ').join('')+Math.floor(Math.random()*10000 + 1)
-// const storageRef2 = storage.ref().child('payment').child(name+phone)
-  
-// const storageRef = storage.ref().child(event).child(college+'_'+name)
-// for (var i = 0 ; i< imagesfile.length ; ++i){
-//     const folderRef = storageRef.child(name+college+ imagesfile[i].name)
-//     const uploadtask = folderRef.put(imagesfile[i])
-    
-//   }
-var event = 'Workshop'
-  const data_sent = {
-    college,name,srcid,phone,emailid,event
-  }
-  $.post('/workshop', data_sent, function() {
-                console.log('Server recieved our data');
-            });
-  
-  // const folderRef = storageRef.child(name+college+fileName);
-  // const folderRef2 = storageRef2.child(name+college+fileName2)
-  // const uploadtask = folderRef.put(file)
-  // const uploadtask2 = folderRef2.put(file2)
-  // const file_url = storage
-  //             .ref("myimages")f
-  //             .child(uploadedFileName)
-  //             .getDownloadURL()
-  //   enable alert
-  // console.log(file_url)  
-  // console.log(imagesfile)
-saveMessages(
-    college,name,srcid,phone,emailid1,event
-
-);
-// Email.send({
-//     Host : "smtp.gmail.com",
-//     Username : "divy.awasthi@gmail.com",
-//     Password : "bidpqwrrmgvmxqgt",
-//     To : emailid,
-//     From : "divy.awasthi@gmail.com",
-//     Subject : "SRC Registration",
-//     Body : "Thank you for registering for src"
-// }).then(
-//   message => alert(message)
-// );
-
-// $.ajax({
-// 				url:"https://api.apispreadsheets.com/data/0pgV2tb1N3nFjcMm/",
-// 				type:"post",
-// 				data:$("#contactForm").serializeArray(),
-// 				success: function(){
-// 					alert("Form Data Submitted :)")
-// 				},
-// 				error: function(){
-// 					alert("There was an error :(")
-// 				}
-// 			});
-
-  document.querySelector(".alert").style.display = "block";
-
-  //   remove the alert
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 3000);
-
-  //   reset the form
-  document.getElementById("contactForm").reset();
-}
-
-const saveMessages = (
-    college,name,srcid1,phone1,emailid1,event
-                    ) => {
-  var newContactForm = contactFormDB.push();
-
-  newContactForm.set({
-    college:college,name:name,srcid:srcid1,phone:phone1,emailid:emailid1,event:event
-    // image:fileimage
-  });
-
-};
-
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
+   <script>
 
     </script>
 </body>
